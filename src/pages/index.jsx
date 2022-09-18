@@ -6,7 +6,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import GoogleButton from '../components/googleButton';
-import PencilLoading from '../components/loadingPencil';
 
 import ButtonMenu from '../components/MenuComponents/ButtonsMenu';
 import ButtonModal from '../components/MenuComponents/ButtonModal/ButtonModal';
