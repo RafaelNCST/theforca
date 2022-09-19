@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const DropDown = styled.div`
   width: 80%;
-  height: ${props => props.height}px;
+  height: auto;
   background-color: #ffffff;
   border-radius: 8px;
   outline: none;
@@ -11,17 +11,15 @@ export const DropDown = styled.div`
   top: ${props => props.top}px;
   z-index: ${props => props.zindex};
   background-color: #ffffff;
-  transition: height 0.5s;
 `;
 
 export const ButtonOptions = styled.button`
   width: 100%;
-  height: ${props => props.height}px;
+  height: 30px;
   display: flex;
   background-color: #ffffff;
   align-items: center;
   justify-content: space-between;
-  transition: height 0.5s;
 
   :first-child {
     border-top-left-radius: 8px;

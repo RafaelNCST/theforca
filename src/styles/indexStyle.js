@@ -23,7 +23,7 @@ export const LogoImage = styled.img`
 export const Menu = styled.div`
   position: relative;
   width: 400px;
-  height: 300px;
+  height: 310px;
   background-color: #000000;
   display: flex;
   justify-content: flex-start;
@@ -38,7 +38,6 @@ export const Menu = styled.div`
 
 export const ContainerTop = styled.div`
   width: 100%;
-  background-color: green;
   height: 60px;
   align-items: center;
   justify-content: center;
@@ -48,7 +47,6 @@ export const ContainerTop = styled.div`
 `;
 
 export const ContainerDropDown = styled.div`
-  background-color: yellow;
   height: 130px;
   width: 100%;
   display: flex;
@@ -58,8 +56,7 @@ export const ContainerDropDown = styled.div`
 
 export const ContainerMid = styled.div`
   width: 100%;
-  background-color: red;
-  height: 50px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -68,8 +65,7 @@ export const ContainerMid = styled.div`
 
 export const ContainerBottom = styled.div`
   width: 100%;
-  background-color: blue;
-  height: 60px;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -88,6 +84,7 @@ export const ButtonsMenu = styled.button`
   flex-direction: row;
   transition: ease-in-out 0.2s;
   cursor: pointer;
+  user-select: none;
 
   :hover {
     background-color: #969696;

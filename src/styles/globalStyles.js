@@ -47,7 +47,7 @@ export const BodyModal = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 350px;
+  width: 380px;
   height: 500px;
   background-color: #8d818c;
   border-radius: 20px;
@@ -73,7 +73,7 @@ export const ContainerContent = styled.div`
   background-color: transparent;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
+  padding: 15px;
   justify-content: space-between;
 `;
 
@@ -87,6 +87,7 @@ export const Button = styled.button`
   justify-content: center;
   cursor: pointer;
   transition: ease-in-out 0.2s;
+  user-select: none;
 
   :hover {
     background-color: #078557;

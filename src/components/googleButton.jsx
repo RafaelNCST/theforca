@@ -19,7 +19,7 @@ export const ButtonLogin = styled.button`
 
 const GoogleButton = () => {
   return (
-    <ButtonLogin onClick={() => alert('oi')}>
+    <ButtonLogin onClick={() => alert('Login com google')}>
       <img
         src='/images/google.png'
         height='20px'

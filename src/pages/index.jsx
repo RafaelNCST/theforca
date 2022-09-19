@@ -35,6 +35,8 @@ import {
 
 const Login = () => {
   const [showModal, setShowModal] = useState(false);
+  const [controlDropDown, setControlDropDown] = useState(null);
+  const [activeDropDown, setActiveDropDown] = useState(false);
 
   return (
     <BodyScreen>
@@ -56,18 +58,33 @@ const Login = () => {
             zindex={3}
             top={60}
             array={MODE_GAME}
+            controlDropDown={controlDropDown}
+            setControlDropDown={setControlDropDown}
+            activeDropDown={activeDropDown}
+            setActiveDropDown={setActiveDropDown}
+            numberDropDown={0}
           />
           <MenuDropDown
             placeholder={PLACEHOLDER_TEMA}
             zindex={2}
             top={110}
             array={TEMA}
+            controlDropDown={controlDropDown}
+            setControlDropDown={setControlDropDown}
+            activeDropDown={activeDropDown}
+            setActiveDropDown={setActiveDropDown}
+            numberDropDown={1}
           />
           <MenuDropDown
             placeholder={PLACEHOLDER_TIME_ROUND}
             zindex={1}
             top={160}
             array={TIME_ROUND}
+            controlDropDown={controlDropDown}
+            setControlDropDown={setControlDropDown}
+            activeDropDown={activeDropDown}
+            setActiveDropDown={setActiveDropDown}
+            numberDropDown={2}
           />
         </ContainerDropDown>
         <ContainerMid>

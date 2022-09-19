@@ -32,7 +32,11 @@ const Modal = ({ showModal, setShowModal }) => {
               <Text fontSize={18} color='#FFFFFF'>
                 Você terá oportunidade de pedir dicas clicando em cima dela.
               </Text>
-              <Button onClick={() => setShowModal(false)}>OK</Button>
+              <Button onClick={() => setShowModal(false)}>
+                <Text fontSize={24} color='#FFFFFF'>
+                  Ok
+                </Text>
+              </Button>
             </ContainerContent>
 
             <ContainerBorder>
