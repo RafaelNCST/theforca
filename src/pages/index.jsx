@@ -42,7 +42,7 @@ const Login = () => {
   const [finishLoading, setFinishLoading] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => setFinishLoading(true), 1000);
+    setFinishLoading(true);
   }, []);
 
   return (
