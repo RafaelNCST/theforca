@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const BodyScreen = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: transparent;
   display: flex;
   justify-content: center;
@@ -85,6 +85,10 @@ export const ButtonsMenu = styled.button`
   transition: ease-in-out 0.2s;
   cursor: pointer;
   user-select: none;
+
+  @media (max-width: 400px) {
+    width: 90px;
+  }
 
   :hover {
     background-color: #969696;

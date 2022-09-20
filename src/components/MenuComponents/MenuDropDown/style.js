@@ -1,5 +1,18 @@
 import styled from 'styled-components';
 
+export const PlaceHolders = styled.p`
+  font-family: 'VerySimpleChalk';
+  color: ${props => props.color};
+  font-size: 15px;
+`;
+
+export const TextOptions = styled.p`
+  color: #000000;
+  font-family: 'VerySimpleChalk';
+  font-size: 13px;
+  text-align: center;
+`;
+
 export const DropDown = styled.div`
   width: 80%;
   height: auto;
@@ -32,22 +45,7 @@ export const ButtonOptions = styled.button`
     border-bottom: 1px solid #000000;
   }
 
-  p {
-    font-size: 14px;
-  }
-
   :active {
     background-color: #b4b8c5;
   }
-`;
-
-export const PlaceHolders = styled.p`
-  @font-face {
-    font-family: 'VerySimpleChalk';
-    src: url('/fonts/VerySimpleChalk.ttf');
-  }
-
-  font-family: 'VerySimpleChalk';
-  color: ${props => props.color};
-  font-size: 20px;
 `;
