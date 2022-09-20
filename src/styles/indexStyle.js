@@ -18,6 +18,11 @@ export const LogoImage = styled.img`
     height: 150px;
     width: 270px;
   }
+
+  @media (max-height: 400px) {
+    height: 150px;
+    width: 270px;
+  }
 `;
 
 export const Menu = styled.div`
