@@ -18,7 +18,12 @@ const ContainerAnimation = styled.div`
 const PencilLoading = () => {
   return (
     <ContainerAnimation>
-      <Lottie options={defaultOptions} height={300} width={300} />
+      <Lottie
+        options={defaultOptions}
+        isClickToPauseDisabled
+        height={300}
+        width={300}
+      />
     </ContainerAnimation>
   );
 };
