@@ -53,6 +53,7 @@ const Login = () => {
 
       <Modal showModal={showModal} setShowModal={setShowModal} />
 
+      {/* eslint-disable-next-line no-extra-boolean-cast */}
       {!!finishLoading ? (
         <Menu>
           <ContainerTop>
