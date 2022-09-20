@@ -4,6 +4,10 @@ export const PlaceHolders = styled.p`
   font-family: 'VerySimpleChalk';
   color: ${props => props.color};
   font-size: 15px;
+
+  @media (max-height: 350px) {
+    font-size: 12px;
+  }
 `;
 
 export const TextOptions = styled.p`
@@ -11,6 +15,10 @@ export const TextOptions = styled.p`
   font-family: 'VerySimpleChalk';
   font-size: 13px;
   text-align: center;
+
+  @media (max-height: 350px) {
+    font-size: 10px;
+  }
 `;
 
 export const DropDown = styled.div`
@@ -24,6 +32,10 @@ export const DropDown = styled.div`
   top: ${props => props.top}px;
   z-index: ${props => props.zindex};
   background-color: #ffffff;
+
+  @media (max-height: 350px) {
+    top: ${props => props.top / 1.2}px;
+  }
 `;
 
 export const ButtonOptions = styled.button`
@@ -33,6 +45,10 @@ export const ButtonOptions = styled.button`
   background-color: #ffffff;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-height: 350px) {
+    height: 15px;
+  }
 
   :first-child {
     border-top-left-radius: 8px;

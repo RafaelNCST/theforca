@@ -10,7 +10,7 @@ const ButtonModal = ({ height, icon, text, setShowModal }) => {
       <Text color='#000000' fontSize={15}>
         {text}
       </Text>
-      <FontAwesomeIcon icon={icon} fontSize={20} />
+      <FontAwesomeIcon icon={icon} fontSize={18} />
     </ButtonsMenu>
   );
 };

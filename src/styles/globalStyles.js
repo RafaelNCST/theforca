@@ -11,6 +11,10 @@ export const Text = styled.p`
   @media (max-width: 460px) {
     font-size: ${props => props.fontSize / 1.2}px;
   }
+
+  @media (max-height: 350px) {
+    font-size: ${props => props.fontSize / 1.3}px;
+  }
 `;
 
 export const GlobalStyle = createGlobalStyle` 

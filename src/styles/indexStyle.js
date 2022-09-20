@@ -19,9 +19,9 @@ export const LogoImage = styled.img`
     width: 270px;
   }
 
-  @media (max-height: 400px) {
-    height: 150px;
-    width: 270px;
+  @media (max-height: 350px) {
+    height: 100px;
+    width: 200px;
   }
 `;
 
@@ -38,6 +38,11 @@ export const Menu = styled.div`
 
   @media (max-width: 400px) {
     width: 90%;
+  }
+
+  @media (max-height: 350px) {
+    height: 230px;
+    width: 230px;
   }
 `;
 
@@ -93,6 +98,11 @@ export const ButtonsMenu = styled.button`
 
   @media (max-width: 400px) {
     width: 90px;
+  }
+
+  @media (max-height: 350px) {
+    width: 80px;
+    height: ${props => props.height / 1.5}px;
   }
 
   :hover {
