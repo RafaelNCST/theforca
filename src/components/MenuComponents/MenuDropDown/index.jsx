@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
-import { DropDown, ButtonOptions, PlaceHolders } from './style';
-
-import { Text } from '../../../styles/globalStyles';
+import { DropDown, ButtonOptions, PlaceHolders, TextOptions } from './style';
 
 const MenuDropDown = ({
   placeholder,
@@ -49,9 +47,9 @@ const MenuDropDown = ({
           <React.Fragment key={index}>
             {activeDropDown && controlDropDown === numberDropDown && (
               <ButtonOptions onClick={() => handleChooseOption(item)}>
-                <Text color='#000000' fontSize={20}>
+                <TextOptions color='#000000' fontSize={14}>
                   {item}
-                </Text>
+                </TextOptions>
               </ButtonOptions>
             )}
           </React.Fragment>

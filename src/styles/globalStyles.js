@@ -2,26 +2,30 @@ import { createGlobalStyle } from 'styled-components';
 import styled from 'styled-components';
 
 export const Text = styled.p`
-  @font-face {
-    font-family: 'VerySimpleChalk';
-    src: url('/fonts/VerySimpleChalk.ttf');
-  }
-
   font-size: ${props => props.fontSize}px;
   color: ${props => props.color};
   font-family: 'VerySimpleChalk';
   text-align: center;
+  font-display: initial;
+
+  @media (max-width: 460px) {
+    font-size: ${props => props.fontSize / 1.2}px;
+  }
 `;
 
-export const GlobalStyle = createGlobalStyle`
-  body {
-    padding: 0;
-    margin: 0;
-    background-image: url('/images/Background.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100vh;
-    width: 100vw;
+export const GlobalStyle = createGlobalStyle` 
+  @font-face {
+      font-family: 'VerySimpleChalk';
+      src: url('/fonts/VerySimpleChalk.ttf');
+      font-display: unset;
+    }
+
+  html, body {
+    padding: 0px;
+    margin: 0px;
+    background-image: url('/images/Background.svg');
+    width: 100%;
+    height: 100%;
     overflow: hidden;
   }
 
@@ -29,11 +33,15 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     border: none;
   }
+
+  #__next {
+    height: 100%;
+  }
 `;
 
 export const ModalStyled = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   margin: 0px;
   padding: 0px;
   background-color: rgba(0, 0, 0, 0.8);
@@ -47,13 +55,12 @@ export const BodyModal = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 380px;
-  height: 500px;
-  background-color: #8d818c;
-  border-radius: 20px;
+  width: ${props => props.width}px;
+  height: ${props => props.height}px;
+  background-color: #f4f3f1;
 
-  @media (max-width: 400px) {
-    width: 270px;
+  @media (max-width: 460px) {
+    width: ${props => props.width / 1.7}px;
   }
 `;
 
@@ -73,7 +80,8 @@ export const ContainerContent = styled.div`
   background-color: transparent;
   flex-direction: column;
   align-items: center;
-  padding: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
   justify-content: space-between;
 `;
 
@@ -82,6 +90,7 @@ export const Button = styled.button`
   height: 50px;
   background-color: #09cb85;
   border-radius: 10px;
+  margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
