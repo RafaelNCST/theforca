@@ -62,8 +62,12 @@ export const BodyModal = styled.div`
   height: ${props => props.height}px;
   background-color: #f4f3f1;
 
-  @media (max-width: 460px) {
-    width: ${props => props.width / 1.7}px;
+  @media (max-width: 450px) {
+    width: 90%;
+  }
+
+  @media (max-width: 280px) {
+    width: 250px;
   }
 
   @media (max-height: 460px) {

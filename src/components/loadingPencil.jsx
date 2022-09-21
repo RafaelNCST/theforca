@@ -1,6 +1,7 @@
 import React from 'react';
 import Lottie from 'react-lottie';
 import animationData from '../../public/lottie/loadingpencil.json';
+import { Text } from '../styles/globalStyles';
 
 import styled from 'styled-components';
 
@@ -17,14 +18,19 @@ const ContainerAnimation = styled.div`
 
 const PencilLoading = () => {
   return (
-    <ContainerAnimation>
-      <Lottie
-        options={defaultOptions}
-        isClickToPauseDisabled
-        height={300}
-        width={300}
-      />
-    </ContainerAnimation>
+    <>
+      <ContainerAnimation>
+        <Lottie
+          options={defaultOptions}
+          isClickToPauseDisabled
+          height={300}
+          width={300}
+        />
+      </ContainerAnimation>
+      <Text fontSize={35} color='#000000'>
+        Carregando
+      </Text>
+    </>
   );
 };
 
