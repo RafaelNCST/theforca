@@ -19,7 +19,7 @@ export const LogoImage = styled.img`
     width: 270px;
   }
 
-  @media (max-height: 350px) {
+  @media (max-height: 460px) {
     height: 100px;
     width: 200px;
   }
@@ -40,7 +40,7 @@ export const Menu = styled.div`
     width: 90%;
   }
 
-  @media (max-height: 350px) {
+  @media (max-height: 460px) {
     height: 230px;
     width: 230px;
   }
@@ -100,7 +100,7 @@ export const ButtonsMenu = styled.button`
     width: 90px;
   }
 
-  @media (max-height: 350px) {
+  @media (max-height: 460px) {
     width: 80px;
     height: ${props => props.height / 1.5}px;
   }

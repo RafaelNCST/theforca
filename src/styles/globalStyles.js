@@ -1,45 +1,44 @@
 import { createGlobalStyle } from 'styled-components';
 import styled from 'styled-components';
 
-export const Text = styled.p`
-  font-size: ${props => props.fontSize}px;
-  color: ${props => props.color};
-  font-family: 'VerySimpleChalk';
-  text-align: center;
-  font-display: initial;
-
-  @media (max-width: 460px) {
-    font-size: ${props => props.fontSize / 1.2}px;
-  }
-
-  @media (max-height: 350px) {
-    font-size: ${props => props.fontSize / 1.3}px;
-  }
-`;
-
 export const GlobalStyle = createGlobalStyle` 
   @font-face {
-      font-family: 'VerySimpleChalk';
+    font-family: 'VerySimpleChalk';
       src: url('/fonts/VerySimpleChalk.ttf');
       font-display: unset;
     }
-
-  html, body {
-    padding: 0px;
+    
+    html, body {
+      padding: 0px;
     margin: 0px;
     background-image: url('/images/Background.svg');
     width: 100%;
     height: 100%;
     overflow: hidden;
   }
-
+  
   * {
     box-sizing: border-box;
     border: none;
   }
-
+  
   #__next {
     height: 100%;
+  }
+  `;
+
+export const Text = styled.p`
+  font-size: ${props => props.fontSize}px;
+  color: ${props => props.color};
+  font-family: 'VerySimpleChalk';
+  text-align: center;
+
+  @media (max-width: 460px) {
+    font-size: ${props => props.fontSize / 1.2}px;
+  }
+
+  @media (max-height: 460px) {
+    font-size: ${props => props.fontSize / 1.3}px;
   }
 `;
 
@@ -66,6 +65,15 @@ export const BodyModal = styled.div`
   @media (max-width: 460px) {
     width: ${props => props.width / 1.7}px;
   }
+
+  @media (max-height: 460px) {
+    width: ${props => props.width / 1.3}px;
+    height: ${props => props.height / 1.6}px;
+  }
+
+  @media (max-height: 320px) {
+    height: ${props => props.height / 1.8}px;
+  }
 `;
 
 export const ContainerBorder = styled.div`
@@ -89,6 +97,21 @@ export const ContainerContent = styled.div`
   justify-content: space-between;
 `;
 
+export const TextModal = styled.p`
+  font-size: ${props => props.fontSize}px;
+  color: ${props => props.color};
+  font-family: 'VerySimpleChalk';
+  text-align: center;
+
+  @media (max-width: 460px) {
+    font-size: ${props => props.fontSize / 1.2}px;
+  }
+
+  @media (max-height: 350px) {
+    font-size: ${props => props.fontSize / 1.5}px;
+  }
+`;
+
 export const Button = styled.button`
   width: 100px;
   height: 50px;
@@ -102,6 +125,12 @@ export const Button = styled.button`
   transition: ease-in-out 0.2s;
   user-select: none;
 
+  @media (max-height: 460px) {
+    width: 100px;
+    height: 30px;
+    margin-top: 0px;
+  }
+
   :hover {
     background-color: #078557;
   }
@@ -113,4 +142,10 @@ export const Pin = styled.div`
   height: 15px;
   background-color: #b4b8c5;
   box-shadow: 2px 2px 2px 0px #000000;
+
+  @media (max-height: 460px) {
+    width: 12px;
+    height: 12px;
+    margin-top: 0px;
+  }
 `;

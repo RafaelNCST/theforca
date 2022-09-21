@@ -5,8 +5,8 @@ export const PlaceHolders = styled.p`
   color: ${props => props.color};
   font-size: 15px;
 
-  @media (max-height: 350px) {
-    font-size: 12px;
+  @media (max-height: 460px) {
+    font-size: 10px;
   }
 `;
 
@@ -16,8 +16,8 @@ export const TextOptions = styled.p`
   font-size: 13px;
   text-align: center;
 
-  @media (max-height: 350px) {
-    font-size: 10px;
+  @media (max-height: 460px) {
+    font-size: 8px;
   }
 `;
 
@@ -33,7 +33,7 @@ export const DropDown = styled.div`
   z-index: ${props => props.zindex};
   background-color: #ffffff;
 
-  @media (max-height: 350px) {
+  @media (max-height: 460px) {
     top: ${props => props.top / 1.2}px;
   }
 `;
@@ -46,7 +46,7 @@ export const ButtonOptions = styled.button`
   align-items: center;
   justify-content: space-between;
 
-  @media (max-height: 350px) {
+  @media (max-height: 460px) {
     height: 15px;
   }
 

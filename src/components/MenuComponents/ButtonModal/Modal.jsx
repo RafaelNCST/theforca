@@ -7,7 +7,7 @@ import {
   ContainerContent,
   Pin,
   Button,
-  Text,
+  TextModal,
 } from '../../../styles/globalStyles';
 
 const Modal = ({ showModal, setShowModal }) => {
@@ -22,21 +22,21 @@ const Modal = ({ showModal, setShowModal }) => {
             </ContainerBorder>
 
             <ContainerContent>
-              <Text fontSize={22} color='#000000'>
+              <TextModal fontSize={22} color='#000000'>
                 Descubra a palavra seguindo a categoria escolhida.
-              </Text>
-              <Text fontSize={22} color='#000000'>
+              </TextModal>
+              <TextModal fontSize={22} color='#000000'>
                 Você terá 7 tentativas para terminar a palavra, onde cada letra
                 terá 1:00 minuto para se escolher.
-              </Text>
-              <Text fontSize={22} color='#000000'>
+              </TextModal>
+              <TextModal fontSize={22} color='#000000'>
                 Você terá oportunidade de pedir dicas (3 no máximo) e ter a
                 opção de chutar e arriscar tudo pelo dobro de pontos.
-              </Text>
+              </TextModal>
               <Button onClick={() => setShowModal(false)}>
-                <Text fontSize={24} color='#000000'>
+                <TextModal fontSize={24} color='#000000'>
                   Ok
-                </Text>
+                </TextModal>
               </Button>
             </ContainerContent>
 

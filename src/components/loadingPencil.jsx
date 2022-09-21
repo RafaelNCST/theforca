@@ -12,7 +12,7 @@ const defaultOptions = {
 };
 
 const ContainerAnimation = styled.div`
-  margin-bottom: -180px;
+  margin-bottom: -170px;
 `;
 
 const PencilLoading = () => {
