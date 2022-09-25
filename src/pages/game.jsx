@@ -1,7 +1,306 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ModalTip from '../components/Tip';
+import Modal from '../components/ModalGame/Modal';
+import ModalGuess from '../components/Guess';
+import ModalWinLoose from '../components/ModalWinLoose';
+import ModalWarning from '../components/ModalWarning';
+import { TEMA } from '../helpers/menuConstants';
+
+import { DATE } from '../helpers/DATE';
+
+import { faGear } from '@fortawesome/free-solid-svg-icons';
+
+import { KEYBOARD, COLORS } from '../helpers/keyboard';
+
+import Lottie from 'react-lottie';
+import animationData from '../../public/lottie/lock.json';
+
+// import { ATTEMPT, TIME } from '../helpers/menuConstants';
+
+import {
+  BodyScreen,
+  Key,
+  KeyBoard,
+  KeyBorder,
+  ContainerGame,
+  TheForcaImage,
+  Keyword,
+  ContainerKeyword,
+  ContainerTextTheme,
+  ContainerHeader,
+  Eraser,
+  Options,
+  ButtonRed,
+  ButtonBlue,
+  Marker,
+  ContainerBoard,
+  Try,
+  Time,
+  Word,
+} from '../styles/gameStyle';
+
+const defaultOptions = {
+  animationData: animationData,
+  autoPlay: false,
+  loop: false,
+  resizeMode: 'contain',
+};
 
 const GameForca = () => {
-  return <h1>Game da Forca aqui</h1>;
+  const [showModalMenu, setShowModalMenu] = useState(false);
+  const [showModalTip, setShowModalTip] = useState(false);
+  const [showModalGuess, setShowModalGuess] = useState(false);
+  const [showModalWin, setShowModalWin] = useState(false);
+  const [showModalLoose, setShowModaLoose] = useState(false);
+  const [idInterval, setIdInterval] = useState(null);
+
+  const { gameTheme, gameMaxRound } = useRouter().query;
+
+  const [mainArray, setMainArray] = useState(['I','N','I','C','I','A','L']);
+  const [correctWords, setCorrectWords] = useState([]);
+  const [wrongWords, setWrongWords] = useState([]);
+  const [hangManPhase, setHangManPhase] = useState(1);
+  const [attempt, setAttempt] = useState(7);
+  const [timeRound, setTimeRound] = useState(0);
+  const [tips, setTips] = useState(3);
+  const [gameReady, setGameReady] = useState(true);
+  const [endGame, setEndGame] = useState(false);
+
+
+  const drawWord = () => {
+    const number = Math.floor(Math.random() * 10);
+    console.log(DATE[gameTheme][number].palavra.toUpperCase());
+    const result = [];
+    for(let item of DATE[gameTheme][number].palavra.toUpperCase()){
+      result.push(item);
+    }
+
+    setMainArray(result);
+  };
+
+  const handleEndGame = () => {
+    clearTimeout(idInterval); 
+    setTimeRound(gameMaxRound);
+    return null;
+  };
+
+  const handleClickWord = letter => {
+    if (mainArray.indexOf(letter) !== -1) {
+      setCorrectWords([...correctWords, letter]);
+      setMainArray(mainArray.filter(item => item !== letter && item !== ' '));
+      setTimeRound(gameMaxRound);
+    } else {
+      setWrongWords([...wrongWords, letter]);
+      handleOnWrongLetter();
+    }
+  };
+
+  const handleColorsKey = item => {
+    if (correctWords.indexOf(item) !== -1) {
+      return COLORS.cor;
+    } else if (wrongWords.indexOf(item) !== -1) {
+      return COLORS.wro;
+    } else {
+      return COLORS.nor;
+    }
+  };
+
+  const handleOnWrongLetter = () => {
+    setAttempt(prev => prev - 1);
+    setHangManPhase(prev => prev + 1);
+    setTimeRound(gameMaxRound);
+  };
+
+  const handleTimerRound = () => {
+    clearTimeout(idInterval); 
+    setIdInterval(setTimeout(() => {
+      setTimeRound(prev => prev - 1);
+    }, 1000));
+  };
+
+  useEffect(() => {
+    if (!gameReady) {
+      setTimeRound(gameMaxRound);
+    }
+  }, [gameReady]);
+
+  useEffect(() => {
+    if (mainArray.length === 0) {
+      setShowModalWin(true);
+      setEndGame(true);
+    } else if (attempt === 0) {
+      setShowModaLoose(true);
+      setEndGame(true);
+    }
+  }, [mainArray, attempt]);
+
+  useEffect(() => {
+    if (showModalTip) setTips(prev => prev - 1);
+  }, [showModalTip]);
+
+  useEffect(() => {
+    if (endGame) {
+      handleEndGame();
+    }else if (!gameReady) {
+      if (timeRound === 0) {
+        handleOnWrongLetter();
+      } else {
+        handleTimerRound();
+      }
+    }
+  }, [timeRound]);
+
+  useEffect(() => {
+    if(gameTheme){
+      drawWord();
+    }
+  }, [gameTheme]);
+
+  return (
+    <React.Fragment>
+      <Modal showModal={showModalMenu} setShowModal={setShowModalMenu} />
+
+      <ModalTip
+        showModal={showModalTip}
+        setShowModal={setShowModalTip}
+        tips={tips}
+      />
+
+      <ModalWarning
+        showModalWarning={gameReady}
+        setShowModalWarning={setGameReady}
+        text1='Começar?'
+        text2='O tempo irá andar quando você começar... Boa sorte'
+      />
+
+      <ModalGuess showModal={showModalGuess} setShowModal={setShowModalGuess} />
+
+      <ModalWinLoose
+        showModal={showModalWin}
+        setShowModal={setShowModalWin}
+        text1='BOA!'
+        text2={'VOCÊ GANHOU!'}
+        color={COLORS.cor}
+        type={0}
+      />
+
+      <ModalWinLoose
+        showModal={showModalLoose}
+        setShowModal={setShowModaLoose}
+        text1='VACILÃO!'
+        text2={'VOCÊ PERDEU!'}
+        color={COLORS.wro}
+        type={1}
+      />
+
+      <BodyScreen>
+        <ContainerHeader>
+          <Eraser>
+            <ButtonRed onClick={() => setShowModalGuess(true)}>
+              {tips === 0 ? <Lottie options={defaultOptions} isClickToPauseDisabled width={80} height={80} /> : 'Chutar'}
+            </ButtonRed>
+            <ButtonBlue
+              onClick={tips === 0 ? null : () => setShowModalTip(true)}
+            >
+              {tips === 0 ? <Lottie options={defaultOptions} isClickToPauseDisabled width={100} height={100} /> : 'Dica'}
+            </ButtonBlue>
+          </Eraser>
+          <Marker>
+            <ContainerBoard>
+              TENTATIVAS: <Try>{attempt}</Try>
+            </ContainerBoard>
+            <ContainerBoard>
+              TEMPO:{' '}
+              <Time>
+                {parseFloat(timeRound) === 60
+                  ? `0${timeRound / 60}:00`
+                  : `00:${timeRound > 9 ? timeRound : '0' + timeRound}`}
+              </Time>
+            </ContainerBoard>
+            <Options onClick={() => setShowModalMenu(true)}>
+              <FontAwesomeIcon icon={faGear} className='gear' />
+            </Options>
+          </Marker>
+        </ContainerHeader>
+        <ContainerGame>
+          <TheForcaImage src={`/images/Fase${hangManPhase}.png`} />
+          <ContainerTextTheme>TEMA: {TEMA[gameTheme]}</ContainerTextTheme>
+          <ContainerKeyword>
+            {mainArray.map((item, index) => {
+              if (item === ' ')
+                return (
+                  <Keyword number={0} key={index}>
+                    {' '}
+                  </Keyword>
+                );
+
+              return (
+                <Keyword
+                  number={4}
+                  key={index}
+                  gridColum={index === 8 ? '2 / span 1' : null}
+                >
+                  <Word
+                    visibility={
+                      correctWords.indexOf(item) !== -1 ? 'visible' : 'hidden'
+                    }
+                  >
+                    {item}
+                  </Word>
+                </Keyword>
+              );
+            })}
+          </ContainerKeyword>
+          {/* <Options>
+            <FontAwesomeIcon icon={faGear} className='gear' />
+          </Options> */}
+        </ContainerGame>
+        <KeyBoard>
+          {KEYBOARD.map((item, index) => (
+            <React.Fragment key={index}>
+              {item === 'A' || item === 'Ç' ? (
+                <KeyBorder
+                  backColor={handleColorsKey(item)}
+                  hoverBackColor={
+                    correctWords.indexOf(item) !== -1 ||
+                    wrongWords.indexOf(item) !== -1
+                      ? null
+                      : '#383B53'
+                  }
+                  onClick={
+                    correctWords.indexOf(item) !== -1 ||
+                    wrongWords.indexOf(item) !== -1
+                      ? null
+                      : () => handleClickWord(item)
+                  }
+                  number={item === 'A' ? 2 : 3}
+                >
+                  {item}
+                </KeyBorder>
+              ) : (
+                <Key
+                  backColor={handleColorsKey(item)}
+                  hoverBackColor={
+                    correctWords.indexOf(item) !== -1 ? null : '#383B53'
+                  }
+                  onClick={
+                    correctWords.indexOf(item) !== -1 ||
+                    wrongWords.indexOf(item) !== -1
+                      ? null
+                      : () => handleClickWord(item)
+                  }
+                >
+                  {item}
+                </Key>
+              )}
+            </React.Fragment>
+          ))}
+        </KeyBoard>
+      </BodyScreen>
+    </React.Fragment>
+  );
 };
 
 export default GameForca;

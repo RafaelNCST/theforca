@@ -28,28 +28,29 @@ export const GlobalStyle = createGlobalStyle`
   `;
 
 export const Text = styled.p`
-  font-size: ${props => props.fontSize}px;
+  font-size: ${({fontSize}) => fontSize}vh;
   color: ${props => props.color};
   font-family: 'VerySimpleChalk';
   text-align: center;
-
-  @media (max-width: 460px) {
-    font-size: ${props => props.fontSize / 1.2}px;
-  }
-
-  @media (max-height: 460px) {
-    font-size: ${props => props.fontSize / 1.3}px;
-  }
+  font-weight: bold;
 `;
 
 export const ModalStyled = styled.div`
-  width: 100%;
-  height: 100%;
   margin: 0px;
   padding: 0px;
   background-color: rgba(0, 0, 0, 0.8);
-  position: absolute;
   z-index: 5;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+`;
+
+export const TextBold = styled.div`
+  font-size: ${({number}) => number}vh;
+  color: ${({color}) => color};
+  font-weight: bold;
+  font-family: 'VerySimpleChalk';
+  text-align: center;
 `;
 
 export const BodyModal = styled.div`
@@ -142,8 +143,8 @@ export const Button = styled.button`
 
 export const Pin = styled.div`
   border-radius: 50px;
-  width: 15px;
-  height: 15px;
+  width: 13px;
+  height: 13px;
   background-color: #b4b8c5;
   box-shadow: 2px 2px 2px 0px #000000;
 
@@ -152,4 +153,8 @@ export const Pin = styled.div`
     height: 12px;
     margin-top: 0px;
   }
+`;
+
+export const ContentMid = styled.div`
+  margin-top: -20px;
 `;

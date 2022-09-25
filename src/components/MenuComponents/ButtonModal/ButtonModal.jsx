@@ -7,7 +7,7 @@ import { ButtonsMenu } from '../../../styles/indexStyle';
 const ButtonModal = ({ height, icon, text, setShowModal }) => {
   return (
     <ButtonsMenu height={height} onClick={() => setShowModal(true)}>
-      <Text color='#000000' fontSize={15}>
+      <Text color='#000000' fontSize={2.3}>
         {text}
       </Text>
       <FontAwesomeIcon icon={icon} fontSize={18} />

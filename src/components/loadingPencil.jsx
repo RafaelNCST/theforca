@@ -27,7 +27,7 @@ const PencilLoading = () => {
           width={300}
         />
       </ContainerAnimation>
-      <Text fontSize={35} color='#000000'>
+      <Text fontSize={5} color='#000000'>
         Carregando
       </Text>
     </>

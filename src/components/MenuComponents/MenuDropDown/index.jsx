@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
@@ -7,19 +7,20 @@ import { DropDown, ButtonOptions, PlaceHolders, TextOptions } from './style';
 const MenuDropDown = ({
   placeholder,
   zindex,
-  top,
   array,
   controlDropDown,
   setControlDropDown,
   activeDropDown,
   setActiveDropDown,
   numberDropDown,
+  choosedOption,
+  setChoosedOption,
+  disabled,
 }) => {
-  const [chooseOption, setChooseOption] = useState(null);
   const [firstRun, setFirstRun] = useState(true);
 
-  const handleChooseOption = item => {
-    setChooseOption(item);
+  const handleChoosedOption = item => {
+    setChoosedOption(item);
     setFirstRun(false);
     setActiveDropDown(false);
   };
@@ -32,22 +33,29 @@ const MenuDropDown = ({
     }
   };
 
+  useEffect(() => {
+    if(disabled){
+      setFirstRun(true);
+      setChoosedOption(placeholder);
+    }
+  }, [disabled]);
+
   return (
-    <DropDown zindex={zindex} top={top}>
-      <ButtonOptions height={30} onClick={handleDropDown}>
+    <DropDown zindex={zindex}>
+      <ButtonOptions color={disabled && numberDropDown === 1 ? null : '#b4b8c5'} onClick={disabled && numberDropDown === 1 ? null : () => handleDropDown()}>
         <PlaceHolders color={firstRun ? '#b4b8c5' : '#000000'}>
-          {chooseOption || placeholder}
+          {firstRun ? placeholder : choosedOption}
         </PlaceHolders>
         <FontAwesomeIcon icon={faChevronDown} />
       </ButtonOptions>
       {array.map((item, index) => {
-        if (chooseOption === item) return null;
+        if (choosedOption === item) return null;
 
         return (
           <React.Fragment key={index}>
             {activeDropDown && controlDropDown === numberDropDown && (
-              <ButtonOptions onClick={() => handleChooseOption(item)}>
-                <TextOptions color='#000000' fontSize={14}>
+              <ButtonOptions onClick={() => handleChoosedOption(item)}>
+                <TextOptions color='#000000'>
                   {item}
                 </TextOptions>
               </ButtonOptions>

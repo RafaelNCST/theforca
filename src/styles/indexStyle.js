@@ -11,24 +11,13 @@ export const BodyScreen = styled.div`
 `;
 
 export const LogoImage = styled.img`
-  height: 150px;
-  width: 300px;
-
-  @media (max-width: 400px) {
-    height: 150px;
-    width: 270px;
-  }
-
-  @media (max-height: 460px) {
-    height: 100px;
-    width: 200px;
-  }
+  width: 40vh;
 `;
 
 export const Menu = styled.div`
   position: relative;
-  width: 400px;
-  height: 310px;
+  width: 55vh;
+  height: 53vh;
   background-color: #000000;
   display: flex;
   justify-content: flex-start;
@@ -36,37 +25,33 @@ export const Menu = styled.div`
   flex-direction: column;
   align-items: center;
 
-  @media (max-width: 400px) {
-    width: 90%;
-  }
-
-  @media (max-height: 460px) {
-    height: 230px;
-    width: 230px;
+  @media (max-width: 500px) {
+      width: 40vh;
   }
 `;
 
 export const ContainerTop = styled.div`
   width: 100%;
-  height: 60px;
+  height: 10vh;
   align-items: center;
   justify-content: center;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
   display: flex;
 `;
 
 export const ContainerDropDown = styled.div`
-  height: 130px;
+  height: 30vh;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  gap: 3vh;
+  margin-bottom: 10px;
 `;
 
 export const ContainerMid = styled.div`
   width: 100%;
-  height: 60px;
+  height: 10vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,17 +60,18 @@ export const ContainerMid = styled.div`
 
 export const ContainerBottom = styled.div`
   width: 100%;
-  height: 50px;
+  height: 10vh;
   display: flex;
   justify-content: center;
   align-items: center;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
+  margin-bottom: 10px;
 `;
 
 export const ButtonsMenu = styled.button`
-  width: 110px;
-  height: ${props => props.height}px;
+  width: 16vh;
+  height: ${props => props.height}vh;
   background-color: #e9ebf8;
   border-radius: 20px;
   display: flex;
@@ -96,13 +82,8 @@ export const ButtonsMenu = styled.button`
   cursor: pointer;
   user-select: none;
 
-  @media (max-width: 400px) {
-    width: 90px;
-  }
-
-  @media (max-height: 460px) {
-    width: 80px;
-    height: ${props => props.height / 1.5}px;
+  .iconsButtons {
+    font-size: 2.5vh;
   }
 
   :hover {

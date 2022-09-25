@@ -3,52 +3,36 @@ import styled from 'styled-components';
 export const PlaceHolders = styled.p`
   font-family: 'VerySimpleChalk';
   color: ${props => props.color};
-  font-size: 15px;
-
-  @media (max-height: 460px) {
-    font-size: 10px;
-  }
+  font-size: 2vh;
+  font-weight: bold;
 `;
 
 export const TextOptions = styled.p`
   color: #000000;
   font-family: 'VerySimpleChalk';
-  font-size: 13px;
+  font-size: 2vh;
   text-align: center;
-
-  @media (max-height: 460px) {
-    font-size: 8px;
-  }
 `;
 
 export const DropDown = styled.div`
   width: 80%;
-  height: auto;
+  height: 4.5vh;
   background-color: #ffffff;
   border-radius: 8px;
   outline: none;
   user-select: none;
-  position: absolute;
-  top: ${props => props.top}px;
   z-index: ${props => props.zindex};
   background-color: #ffffff;
-
-  @media (max-height: 460px) {
-    top: ${props => props.top / 1.2}px;
-  }
 `;
 
 export const ButtonOptions = styled.button`
   width: 100%;
-  height: 30px;
+  height: 4.5vh;
   display: flex;
   background-color: #ffffff;
   align-items: center;
   justify-content: space-between;
-
-  @media (max-height: 460px) {
-    height: 15px;
-  }
+  font-weight: bold;
 
   :first-child {
     border-top-left-radius: 8px;
@@ -62,6 +46,6 @@ export const ButtonOptions = styled.button`
   }
 
   :active {
-    background-color: #b4b8c5;
+    background-color: ${({color}) => color};
   }
 `;
