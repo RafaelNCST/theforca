@@ -25,7 +25,7 @@ const ModalTip = ({ showModal, setShowModal, gameTheme, tips, randomNumber}) => 
         <ContainerContent>
           <Text fontSize={4}>A DICA É: </Text>
           <ContentMid>
-            <TextBold>{DATE[gameTheme][randomNumber].dica[tips-1].toUpperCase()}</TextBold>
+            <TextBold>{DATE[gameTheme][randomNumber].dica[tips]}</TextBold>
           </ContentMid>
           <ButtonHandler
             backColor={'#325AA4'}
