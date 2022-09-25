@@ -196,11 +196,10 @@ export const ContainerTextTheme = styled.div`
   height: auto;
   font-weight: bold;
   font-family: 'VerySimpleChalk';
-  font-size: 1.5em;
+  font-size: 1.3em;
   display: flex;
   justify-content: center;
   margin-top: 40px;
-  font-size: 1.5rem;
 `;
 
 export const TheForcaImage = styled.img`

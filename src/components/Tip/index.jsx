@@ -8,9 +8,10 @@ import {
   TextBold,
   ContentMid
 } from '../../styles/globalStyles';
+import { DATE } from '../../helpers/DATE';
 import { BodyModal, ButtonHandler } from '../ModalGame/style';
 
-const ModalTip = ({ showModal, setShowModal}) => {
+const ModalTip = ({ showModal, setShowModal, gameTheme, tips, randomNumber}) => {
 
   if (!showModal) return null;
 
@@ -24,7 +25,7 @@ const ModalTip = ({ showModal, setShowModal}) => {
         <ContainerContent>
           <Text fontSize={4}>A DICA É: </Text>
           <ContentMid>
-            <TextBold>DIAGRAMA</TextBold>
+            <TextBold>{DATE[gameTheme][randomNumber].dica[tips-1].toUpperCase()}</TextBold>
           </ContentMid>
           <ButtonHandler
             backColor={'#325AA4'}

@@ -59,6 +59,7 @@ const GameForca = () => {
   const { gameTheme, gameMaxRound } = useRouter().query;
 
   const [mainArray, setMainArray] = useState(['I','N','I','C','I','A','L']);
+  const [visualArray, setVisualArray] = useState(['I','N','I','C','I','A','L']);
   const [correctWords, setCorrectWords] = useState([]);
   const [wrongWords, setWrongWords] = useState([]);
   const [hangManPhase, setHangManPhase] = useState(1);
@@ -67,16 +68,17 @@ const GameForca = () => {
   const [tips, setTips] = useState(3);
   const [gameReady, setGameReady] = useState(true);
   const [endGame, setEndGame] = useState(false);
-
+  const [randomNumber, setRandomNumber] = useState(null);
 
   const drawWord = () => {
     const number = Math.floor(Math.random() * 10);
-    console.log(DATE[gameTheme][number].palavra.toUpperCase());
+    setRandomNumber(number);
     const result = [];
     for(let item of DATE[gameTheme][number].palavra.toUpperCase()){
       result.push(item);
     }
 
+    setVisualArray(result);
     setMainArray(result);
   };
 
@@ -165,7 +167,9 @@ const GameForca = () => {
       <ModalTip
         showModal={showModalTip}
         setShowModal={setShowModalTip}
+        gameTheme={gameTheme}
         tips={tips}
+        randomNumber={randomNumber}
       />
 
       <ModalWarning
@@ -228,7 +232,7 @@ const GameForca = () => {
           <TheForcaImage src={`/images/Fase${hangManPhase}.png`} />
           <ContainerTextTheme>TEMA: {TEMA[gameTheme]}</ContainerTextTheme>
           <ContainerKeyword>
-            {mainArray.map((item, index) => {
+            {visualArray.map((item, index) => {
               if (item === ' ')
                 return (
                   <Keyword number={0} key={index}>
