@@ -1,6 +1,5 @@
 import React from 'react';
 import { GlobalStyle } from '../styles/globalStyles';
-import { AuthProvider } from '../contexts/AuthContext';
 
 const MyApp = ({ Component, pageProps }) => {
   return (
