@@ -20,7 +20,7 @@ import {
 
 import { TitleWord, ContainerText } from './style';
 
-const ModalWinLoose = ({ showModal, setShowModal, text1, text2, color, type }) => {
+const ModalWinLoose = ({ showModal, setShowModal, text1, text2, color, type, refreshGame }) => {
   const router = useRouter();
 
   const defaultOptions = {
@@ -30,7 +30,7 @@ const ModalWinLoose = ({ showModal, setShowModal, text1, text2, color, type }) =
   };
 
   const handleRestartGame = () => {
-    router.reload();
+    refreshGame();
     setShowModal(false);
   };
 

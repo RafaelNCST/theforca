@@ -25,14 +25,19 @@ export const ContainerGame = styled.main`
   flex: 2;
   display: grid;
   grid-template-rows: 1fr 1fr;
+  grid-template-columns: repeat(6, 1fr);
   flex-direction: row;
   width: 100%;
   padding: 10px;
+
+  @media (max-width: 550px) {
+    grid-template-rows: 15vh 1fr 10vh;
+  }
 `;
 
 export const Options = styled.div`
-  width: 50px;
-  height: 50px;
+  width: 1.5em;
+  height: 1.5em;
   background-color: #8D818C;
   border: 3px solid #000;
   display: flex;
@@ -44,9 +49,20 @@ export const Options = styled.div`
   cursor: pointer;
   z-index: 2;
   transition: ease-in-out 0.3s;
+  font-size: min(4rem, calc(min(100em/2.15,20vh) / 6));
+
+  @media (max-width: 550px) {
+    margin-top: 5px;
+    width: 1.2em;
+    height: 1.2em;
+
+    .gear {
+    font-size: 1rem;
+  }
+  }
 
   .gear {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
   }
 
   :hover {
@@ -64,91 +80,67 @@ export const Marker = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column; 
-  grid-column: 8 / span 3;
+  grid-column: 7 / span 3;
   grid-row-start: 1;
   grid-row-end: 4;
   padding-left: 10px;
   font-family: 'VerySimpleChalk';
-  margin-right: -80px;
-  font-size: min(4rem, calc(min(100em/2.15,25vh) / 6));
+  margin-right: -140px;
+  font-size: min(4rem, calc(min(100em/2.15,20vh) / 6));
 
-
-  @media (max-width: 650px) and (max-height: 700px) {
-    width: 40vw;
-    height: 40vw;
-    font-size: min(4rem, calc(min(100em/2.15,25vw) / 6));
-  }
-
-  @media (max-width: 500px) and (max-height: 700px) {
-    width: 50vw;
-    height: 50vw;
-    min-height: 100px;
-    min-width: 100px;
-    font-size: min(4rem, calc(min(100em/2.15,25vw) / 5));
-    grid-column: 4 / span 3;
-  }
-
-  /* @media (max-width: 600px) and (max-height: 800px) {
+  @media (max-width: 550px) {
     grid-column: 3 / span 1;
-    width: 30vh;
+    width: 50vw;
+    height: 10em;
+    font-size: 1em;
+    padding-top: 25px;
+    padding-left: 0px;
+  }
+
+  @media (min-height: 920px) and (max-height: 1000px) {
+    width: 40vh;
+    height: 40vh;
+    margin-right: -80px;
+  }
+
+  @media (min-height: 1000px) and (max-height: 1200px) {
+    width: 35vh;
     height: 35vh;
-    margin-left: -35px;
-    font-size: 3.0vh;
+    margin-right: 0px;
   }
 
-  @media (max-width: 360px) {
-    grid-column: 3 / span 1;
-    width: 50vw;
-    height: 22vh;
-    font-size: 2.2vh;
+  @media (min-height: 1201px) {
+    width: 35vh;
+    height: 35vh;
+    margin-left: -60px;
   }
-
-  @media (max-width: 320px) and (max-height: 561px) {
-    padding-top: 15px;
-    padding-right: 10px;
-    font-size: 2.6vh;
-  } */
 `;
 
 export const Eraser = styled.div`
   width: 30vh;
   height: 9vh;
-  margin-top: 20px;
   display: flex;
   flex-direction: row;
-  grid-column: 7 / span 1;
+  grid-column: 6 / span 1;
   margin-top: 30px;
   font-family: 'VerySimpleChalk';
   font-weight: bold;
   font-size: min(4rem, calc(min(100em/2.15,25vh) / 9));
+  user-select: none;
+  cursor: pointer;
 
-  @media (max-width: 650px) and (max-height: 700px) {
-    width: 30vw;
-    height: 9vw;
-    font-size: min(4rem, calc(min(100em/2.15,25vw) / 7));
+  @media (max-width: 550px) {
+    grid-column: 2 / span 1;
+    width: 35vw;
+    height: 9vh;
+    font-size: min(4rem, calc(min(100em/2.15,25vh) / 11));
   }
 
-  @media (max-width: 500px) and (max-height: 700px) {
-    width: 30vw;
-    height: 12vw;
-    font-size: min(4rem, calc(min(100em/2.15,25vw) / 7));
+  @media (min-height: 900px) {
+    width: 20vh;
+    height: 8vh;
     grid-column: 3 / span 1;
   }
-
-  /* @media (max-width: 600px) and (max-height: 800px) {
-    grid-column: 2 / span 1;
-    width: 40vw;
-    height: 8vh;
-    font-size: 2vh;
-  }
-
-  @media (max-width: 360px) {
-    grid-column: 1 / span 2;
-    width: 40vw;
-    height: 7vh;
-    margin-left: 10px;
-    font-size: 1.8vh;
-  } */
 `;
 
 export const ButtonRed = styled.div`
@@ -162,6 +154,10 @@ export const ButtonRed = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+
+  @media (max-width: 550px) {
+    padding-left: 10px;
+  }
 `;
 
 export const ButtonBlue = styled.div`
@@ -196,47 +192,57 @@ export const ContainerTextTheme = styled.div`
   height: auto;
   font-weight: bold;
   font-family: 'VerySimpleChalk';
-  font-size: 1.3em;
+  font-size: 1.2em;
   display: flex;
   justify-content: center;
   margin-top: 40px;
+  grid-column: 2 / span 3;
+  margin-left: 5px;
+
+  @media (max-width: 550px) {
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column: 2 / span 3;
+    height: 20vh;
+    margin-top: 20px;
+    font-size: 1em;
+  }
 `;
 
 export const TheForcaImage = styled.img`
   height: 15rem;
   grid-row-start: 1;
   grid-row-end: 3;
+  grid-column: 1;
+
+  @media (max-width: 550px) {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column: 3;
+    height: 25vh;
+  }
 `;
-
-// export const SubContainer = styled.div`
-//   width: 100%;
-//   display: grid;
-//   grid-template-rows: 1fr 1fr;
-//   grid-template-columns: repeat(3, 1fr);
-//   grid-column-start: span 2;
-//   justify-content: space-between;
-
-//   @media (max-width: 750px) {
-//     grid-template-rows: 1fr 1fr 1fr;
-//   }
-// `;
 
 export const ContainerKeyword = styled.div`
   display: grid;
   grid-template-rows: repeat(3, 1fr);
-  grid-template-columns: repeat(9, 1fr);
+  grid-template-columns: repeat(15, 1fr);
   font-size: 5vh;
   font-family: 'VerySimpleChalk';
   font-weight: bold;
-  grid-column: 2 / span 5;
+  grid-column: 2 / span 6;
   grid-row-start: 2;
   grid-row-end: 3;
   grid-gap: 10px;
   margin-bottom: 10px;
 
-  @media (max-width: 750px){
+  @media (max-width: 550px) {
+    grid-row-start: 3;
+    grid-row-end: 3;
+    grid-template-rows: repeat(2, 1fr);
+    grid-column: 1 / span 6;
+    grid-template-columns: repeat(17, ${({size}) => size}em);
     font-size: 3vh;
-    grid-column: 1 / span 3;
   }
 `;
 
@@ -245,7 +251,7 @@ export const Keyword = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  grid-column: ${({gridColum}) => gridColum};
+  grid-row: 2;
 `;
 
 export const Word = styled.div`

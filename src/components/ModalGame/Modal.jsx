@@ -52,7 +52,7 @@ const Modal = ({ showModal, setShowModal, handler, setHandler }) => {
               {!handler ? 'ON' : 'OFF'}
             </HandlerSound>
             <SoundImage
-              onClick={() => setHandler(!handler)}
+              onClick={() => setHandler()}
               src={!handler ? '/images/sound.png' : '/images/soundBlock.png'}
             />
           </SoundContainer>

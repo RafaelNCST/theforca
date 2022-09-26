@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { SoundContext } from '../contexts/soundContext';
 import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ModalTip from '../components/Tip';
@@ -57,6 +58,7 @@ const GameForca = () => {
   const [idInterval, setIdInterval] = useState(null);
 
   const { gameTheme, gameMaxRound } = useRouter().query;
+  const {muted, handleMuted} = useContext(SoundContext);
 
   const [mainArray, setMainArray] = useState([
     'I',
@@ -87,7 +89,6 @@ const GameForca = () => {
   const [randomNumber, setRandomNumber] = useState(null);
   const [word, setWord] = useState(null);
   const [meant, setMeant] = useState(null);
-  const [muted, setMuted] = useState(false);
 
   const drawWord = () => {
     const number = Math.floor(Math.random() * 10);
@@ -101,6 +102,18 @@ const GameForca = () => {
     setWord(DATE[gameTheme][number].palavra.toUpperCase());
     setVisualArray(result);
     setMainArray(result);
+  };
+
+  const refreshGame = () => {
+    clearTimeout(idInterval);
+    setEndGame(false);
+    setHangManPhase(1);
+    drawWord();
+    setTips(3);
+    setAttempt(7);
+    setWrongWords([]);
+    setCorrectWords([]);
+    setGameReady(true);
   };
 
   const handleEndGame = () => {
@@ -147,7 +160,7 @@ const GameForca = () => {
 
   useEffect(() => {
     if (!gameReady) {
-      setTimeRound(gameMaxRound);
+      setTimeRound(parseInt(gameMaxRound));
     }
   }, [gameReady]);
 
@@ -186,7 +199,7 @@ const GameForca = () => {
   return (
     <React.Fragment>
       <audio autoPlay={true} muted={muted} loop src="/audios/musicGame.mp3" type="audio/mp3" />
-      <Modal showModal={showModalMenu} setShowModal={setShowModalMenu} handler={muted} setHandler={setMuted} />
+      <Modal showModal={showModalMenu} setShowModal={setShowModalMenu} handler={muted} setHandler={handleMuted} />
 
       <ModalTip
         showModal={showModalTip}
@@ -219,6 +232,7 @@ const GameForca = () => {
         text2={'VOCÊ GANHOU!'}
         color={COLORS.cor}
         type={0}
+        refreshGame={refreshGame}
       />
 
       <ModalWinLoose
@@ -228,6 +242,7 @@ const GameForca = () => {
         text2={'VOCÊ PERDEU!'}
         color={COLORS.wro}
         type={1}
+        refreshGame={refreshGame}
       />
 
       <BodyScreen>
@@ -282,18 +297,11 @@ const GameForca = () => {
           <ContainerTextTheme>TEMA: {TEMA[gameTheme]}</ContainerTextTheme>
           <ContainerKeyword>
             {visualArray.map((item, index) => {
-              if (item === ' ')
-                return (
-                  <Keyword number={0} key={index}>
-                    {' '}
-                  </Keyword>
-                );
-
               return (
                 <Keyword
-                  number={4}
+                  number={item === ' ' ? 0 : 4}
+                  size={item.length > 12 ? 0.4 : 0.7}
                   key={index}
-                  gridColum={index === 8 ? '2 / span 1' : null}
                 >
                   <Word
                     visibility={
@@ -336,7 +344,7 @@ const GameForca = () => {
                 <Key
                   backColor={handleColorsKey(item)}
                   hoverBackColor={
-                    correctWords.indexOf(item) !== -1 ? null : '#383B53'
+                    correctWords.indexOf(item) !== -1 || wrongWords.indexOf(item) !== -1 ? null : '#383B53'
                   }
                   onClick={
                     correctWords.indexOf(item) !== -1 ||
