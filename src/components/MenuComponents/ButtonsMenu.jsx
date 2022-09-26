@@ -33,6 +33,7 @@ const ButtonMenu = ({
         router.push({
           pathname: '/slot',
           query: {
+            gameMode: gameMode,
             gameMaxRound: TIME_ROUND_CONVERTER[!gameMaxRound ? '1 minuto' : gameMaxRound],
           },
         });

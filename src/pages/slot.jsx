@@ -26,7 +26,7 @@ const SlotWord = () => {
 
   const router = useRouter();
 
-  const { gameMaxRound } = useRouter().query;
+  const { gameMode, gameMaxRound } = useRouter().query;
 
   const [rotateNumber, setRotateNumber] = useState(0);
   const [randomNumber, setRandomNumber] = useState(null);
@@ -42,6 +42,7 @@ const SlotWord = () => {
         router.push({
             pathname: '/game',
             query: { 
+                gameMode: gameMode,
                 gameTheme: number, 
                 gameMaxRound: gameMaxRound
             }

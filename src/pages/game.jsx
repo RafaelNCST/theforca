@@ -9,6 +9,8 @@ import ModalWinLoose from '../components/ModalWinLoose';
 import ModalWarning from '../components/ModalWarning';
 import { TEMA } from '../helpers/menuConstants';
 
+import ModalWarningGuess from '../components/Guess/warningModal';
+
 import { DATE } from '../helpers/DATE';
 
 import { faGear } from '@fortawesome/free-solid-svg-icons';
@@ -55,10 +57,12 @@ const GameForca = () => {
   const [showModalGuess, setShowModalGuess] = useState(false);
   const [showModalWin, setShowModalWin] = useState(false);
   const [showModalLoose, setShowModaLoose] = useState(false);
+  const [guessWarningModal, setGuessWarningModal] = useState(false);
   const [idInterval, setIdInterval] = useState(null);
 
-  const { gameTheme, gameMaxRound } = useRouter().query;
-  const {muted, handleMuted} = useContext(SoundContext);
+  const { gameMode, gameTheme, gameMaxRound } = useRouter().query;
+  const router = useRouter();
+  const { muted, handleMuted } = useContext(SoundContext);
 
   const [mainArray, setMainArray] = useState([
     'I',
@@ -105,15 +109,25 @@ const GameForca = () => {
   };
 
   const refreshGame = () => {
-    clearTimeout(idInterval);
-    setEndGame(false);
-    setHangManPhase(1);
-    drawWord();
-    setTips(3);
-    setAttempt(7);
-    setWrongWords([]);
-    setCorrectWords([]);
-    setGameReady(true);
+    if (gameMode) {
+      router.replace({
+        pathname: '/slot',
+        query: {
+          gameMode: gameMode,
+          gameMaxRound: gameMaxRound,
+        },
+      });
+    } else {
+      clearTimeout(idInterval);
+      setEndGame(false);
+      setHangManPhase(1);
+      drawWord();
+      setTips(3);
+      setAttempt(7);
+      setWrongWords([]);
+      setCorrectWords([]);
+      setGameReady(true);
+    }
   };
 
   const handleEndGame = () => {
@@ -198,8 +212,19 @@ const GameForca = () => {
 
   return (
     <React.Fragment>
-      <audio autoPlay={true} muted={muted} loop src="/audios/musicGame.mp3" type="audio/mp3" />
-      <Modal showModal={showModalMenu} setShowModal={setShowModalMenu} handler={muted} setHandler={handleMuted} />
+      <audio
+        autoPlay={true}
+        muted={muted}
+        loop
+        src='/audios/musicGame.mp3'
+        type='audio/mp3'
+      />
+      <Modal
+        showModal={showModalMenu}
+        setShowModal={setShowModalMenu}
+        handler={muted}
+        setHandler={handleMuted}
+      />
 
       <ModalTip
         showModal={showModalTip}
@@ -207,6 +232,14 @@ const GameForca = () => {
         gameTheme={gameTheme}
         tips={tips}
         randomNumber={randomNumber}
+      />
+
+      <ModalWarningGuess
+        showModal={guessWarningModal}
+        setShowModal={setGuessWarningModal}
+        activeGuess={setShowModalGuess}
+        colorContinue={COLORS.wro}
+        colorNo={COLORS.cor}
       />
 
       <ModalWarning
@@ -248,7 +281,13 @@ const GameForca = () => {
       <BodyScreen>
         <ContainerHeader>
           <Eraser>
-            <ButtonRed onClick={correctWords.length > 0 || wrongWords.length > 0 ? null : () => setShowModalGuess(true)}>
+            <ButtonRed
+              onClick={
+                correctWords.length > 0 || wrongWords.length > 0
+                  ? null
+                  : () => setGuessWarningModal(true)
+              }
+            >
               {correctWords.length > 0 || wrongWords.length > 0 ? (
                 <Lottie
                   options={defaultOptions}
@@ -344,7 +383,10 @@ const GameForca = () => {
                 <Key
                   backColor={handleColorsKey(item)}
                   hoverBackColor={
-                    correctWords.indexOf(item) !== -1 || wrongWords.indexOf(item) !== -1 ? null : '#383B53'
+                    correctWords.indexOf(item) !== -1 ||
+                    wrongWords.indexOf(item) !== -1
+                      ? null
+                      : '#383B53'
                   }
                   onClick={
                     correctWords.indexOf(item) !== -1 ||
