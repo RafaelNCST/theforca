@@ -100,7 +100,7 @@ export const Marker = styled.div`
   @media (min-height: 920px) and (max-height: 1000px) {
     width: 40vh;
     height: 40vh;
-    margin-right: -80px;
+    margin-right: -140px;
   }
 
   @media (min-height: 1000px) and (max-height: 1200px) {
