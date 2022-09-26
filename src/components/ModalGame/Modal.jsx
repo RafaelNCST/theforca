@@ -18,8 +18,7 @@ import {
   TextSom,
 } from './style';
 
-const Modal = ({ showModal, setShowModal }) => {
-  const [handler, setHandler] = useState(false);
+const Modal = ({ showModal, setShowModal, handler, setHandler }) => {
   const [showModalChecked, setShowModalChecked] = useState();
 
   if (!showModal) return null;
@@ -49,12 +48,12 @@ const Modal = ({ showModal, setShowModal }) => {
           </ContentButtons>
           <SoundContainer>
             <TextSom>SOM</TextSom>
-            <HandlerSound color={handler ? '#65DC52' : '#C20B0B'}>
-              {handler ? 'ON' : 'OFF'}
+            <HandlerSound color={!handler ? '#65DC52' : '#C20B0B'}>
+              {!handler ? 'ON' : 'OFF'}
             </HandlerSound>
             <SoundImage
               onClick={() => setHandler(!handler)}
-              src={handler ? '/images/sound.png' : '/images/soundBlock.png'}
+              src={!handler ? '/images/sound.png' : '/images/soundBlock.png'}
             />
           </SoundContainer>
         </ContainerContent>

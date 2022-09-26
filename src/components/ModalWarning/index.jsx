@@ -28,7 +28,7 @@ const ModalWarning = ({ showModalWarning, setShowModalWarning, text1, text2 }) =
         </ContainerBorder>
         <ContainerContent>
           <ContainerText>
-            <TextBold>{text1} <TextWarning>{text2}</TextWarning></TextBold>
+            <TextBold number={2.5}>{text1} <TextWarning>{text2}</TextWarning></TextBold>
           </ContainerText>
           <ContentButtons direction={'column'}>
             <ButtonHandler backColor={'#325AA4'} onClick={() => setShowModalWarning(false)}>

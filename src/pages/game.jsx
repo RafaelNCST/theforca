@@ -58,8 +58,24 @@ const GameForca = () => {
 
   const { gameTheme, gameMaxRound } = useRouter().query;
 
-  const [mainArray, setMainArray] = useState(['I','N','I','C','I','A','L']);
-  const [visualArray, setVisualArray] = useState(['I','N','I','C','I','A','L']);
+  const [mainArray, setMainArray] = useState([
+    'I',
+    'N',
+    'I',
+    'C',
+    'I',
+    'A',
+    'L',
+  ]);
+  const [visualArray, setVisualArray] = useState([
+    'I',
+    'N',
+    'I',
+    'C',
+    'I',
+    'A',
+    'L',
+  ]);
   const [correctWords, setCorrectWords] = useState([]);
   const [wrongWords, setWrongWords] = useState([]);
   const [hangManPhase, setHangManPhase] = useState(1);
@@ -69,21 +85,26 @@ const GameForca = () => {
   const [gameReady, setGameReady] = useState(true);
   const [endGame, setEndGame] = useState(false);
   const [randomNumber, setRandomNumber] = useState(null);
+  const [word, setWord] = useState(null);
+  const [meant, setMeant] = useState(null);
+  const [muted, setMuted] = useState(false);
 
   const drawWord = () => {
     const number = Math.floor(Math.random() * 10);
     setRandomNumber(number);
     const result = [];
-    for(let item of DATE[gameTheme][number].palavra.toUpperCase()){
+    for (let item of DATE[gameTheme][number].palavra.toUpperCase()) {
       result.push(item);
     }
 
+    setMeant(DATE[gameTheme][number].descricao.toUpperCase());
+    setWord(DATE[gameTheme][number].palavra.toUpperCase());
     setVisualArray(result);
     setMainArray(result);
   };
 
   const handleEndGame = () => {
-    clearTimeout(idInterval); 
+    clearTimeout(idInterval);
     setTimeRound(gameMaxRound);
     return null;
   };
@@ -116,10 +137,12 @@ const GameForca = () => {
   };
 
   const handleTimerRound = () => {
-    clearTimeout(idInterval); 
-    setIdInterval(setTimeout(() => {
-      setTimeRound(prev => prev - 1);
-    }, 1000));
+    clearTimeout(idInterval);
+    setIdInterval(
+      setTimeout(() => {
+        setTimeRound(prev => prev - 1);
+      }, 1000),
+    );
   };
 
   useEffect(() => {
@@ -143,9 +166,9 @@ const GameForca = () => {
   }, [showModalTip]);
 
   useEffect(() => {
-    if (endGame) {
+    if (endGame || showModalGuess) {
       handleEndGame();
-    }else if (!gameReady) {
+    } else if (!gameReady) {
       if (timeRound === 0) {
         handleOnWrongLetter();
       } else {
@@ -155,14 +178,15 @@ const GameForca = () => {
   }, [timeRound]);
 
   useEffect(() => {
-    if(gameTheme){
+    if (gameTheme) {
       drawWord();
     }
   }, [gameTheme]);
 
   return (
     <React.Fragment>
-      <Modal showModal={showModalMenu} setShowModal={setShowModalMenu} />
+      <audio autoPlay={true} muted={muted} loop src="/audios/musicGame.mp3" type="audio/mp3" />
+      <Modal showModal={showModalMenu} setShowModal={setShowModalMenu} handler={muted} setHandler={setMuted} />
 
       <ModalTip
         showModal={showModalTip}
@@ -179,7 +203,14 @@ const GameForca = () => {
         text2='O tempo irá andar quando você começar... Boa sorte'
       />
 
-      <ModalGuess showModal={showModalGuess} setShowModal={setShowModalGuess} />
+      <ModalGuess
+        showModal={showModalGuess}
+        setShowModal={setShowModalGuess}
+        word={word}
+        setShowModalWin={setShowModalWin}
+        setShowModaLoose={setShowModaLoose}
+        meant={meant}
+      />
 
       <ModalWinLoose
         showModal={showModalWin}
@@ -202,13 +233,31 @@ const GameForca = () => {
       <BodyScreen>
         <ContainerHeader>
           <Eraser>
-            <ButtonRed onClick={() => setShowModalGuess(true)}>
-              {tips === 0 ? <Lottie options={defaultOptions} isClickToPauseDisabled width={80} height={80} /> : 'Chutar'}
+            <ButtonRed onClick={correctWords.length > 0 || wrongWords.length > 0 ? null : () => setShowModalGuess(true)}>
+              {correctWords.length > 0 || wrongWords.length > 0 ? (
+                <Lottie
+                  options={defaultOptions}
+                  isClickToPauseDisabled
+                  width={80}
+                  height={80}
+                />
+              ) : (
+                'Chutar'
+              )}
             </ButtonRed>
             <ButtonBlue
               onClick={tips === 0 ? null : () => setShowModalTip(true)}
             >
-              {tips === 0 ? <Lottie options={defaultOptions} isClickToPauseDisabled width={100} height={100} /> : 'Dica'}
+              {tips === 0 ? (
+                <Lottie
+                  options={defaultOptions}
+                  isClickToPauseDisabled
+                  width={100}
+                  height={100}
+                />
+              ) : (
+                'Dica'
+              )}
             </ButtonBlue>
           </Eraser>
           <Marker>

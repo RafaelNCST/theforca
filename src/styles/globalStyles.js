@@ -99,21 +99,22 @@ export const ContainerContent = styled.div`
   align-items: center;
   padding-left: 15px;
   padding-right: 15px;
+  gap: 10px;
   justify-content: space-between;
+
+  @media (orientation: landscape) {
+    gap: 5px;
+  }
 `;
 
 export const TextModal = styled.p`
-  font-size: ${props => props.fontSize}px;
+  font-size: 1.1em;
   color: ${props => props.color};
   font-family: 'VerySimpleChalk';
   text-align: center;
 
-  @media (max-width: 460px) {
-    font-size: ${props => props.fontSize / 1.2}px;
-  }
-
-  @media (max-height: 350px) {
-    font-size: ${props => props.fontSize / 1.5}px;
+  @media (orientation: landscape) {
+    font-size: 0.9em;
   }
 `;
 
@@ -143,18 +144,13 @@ export const Button = styled.button`
 
 export const Pin = styled.div`
   border-radius: 50px;
-  width: 13px;
-  height: 13px;
+  width: 2vh;
+  height: 2vh;
   background-color: #b4b8c5;
   box-shadow: 2px 2px 2px 0px #000000;
-
-  @media (max-height: 460px) {
-    width: 12px;
-    height: 12px;
-    margin-top: 0px;
-  }
 `;
 
 export const ContentMid = styled.div`
-  margin-top: -20px;
+  font-size: 4vh;
+  margin-top: -5px;
 `;

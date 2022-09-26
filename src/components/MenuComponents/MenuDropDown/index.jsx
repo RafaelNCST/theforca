@@ -54,7 +54,7 @@ const MenuDropDown = ({
         return (
           <React.Fragment key={index}>
             {activeDropDown && controlDropDown === numberDropDown && (
-              <ButtonOptions onClick={() => handleChoosedOption(item)}>
+              <ButtonOptions backColor='#b4b8c5' onClick={() => handleChoosedOption(item)}>
                 <TextOptions color='#000000'>
                   {item}
                 </TextOptions>

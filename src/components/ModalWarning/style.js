@@ -10,6 +10,9 @@ export const BodyModal = styled.div`
   height: ${({ height }) => height}vh;
   background-color: #f4f3f1;
   user-select: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 export const TextWarning = styled.p`
@@ -19,8 +22,8 @@ export const TextWarning = styled.p`
 export const ContainerText = styled.div`
   flex: 1;
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const ContentButtons = styled.div`

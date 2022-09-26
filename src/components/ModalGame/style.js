@@ -3,13 +3,20 @@ import styled from 'styled-components';
 export const BodyModal = styled.div`
   position: absolute;
   z-index: ${({zIndex}) => zIndex};
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: ${({ width }) => width}vh;
   height: ${({ height }) => height}vh;
   background-color: #f4f3f1;
   user-select: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media (max-width: 500px) {
+    width: 90vw;
+  }
 `;
 
 export const HeaderLogo = styled.div`
@@ -36,6 +43,12 @@ export const ButtonHandler = styled.button`
   font-size: 3vh;
   cursor: pointer;
   transition: ease-in-out 0.2s;
+
+  @media (orientation: landscape) {
+    width: 15vh;
+    height: 4vh;
+    font-size: 2.5vh;
+  }
 
   :hover {
     background-color: ${({backColor}) => backColor};

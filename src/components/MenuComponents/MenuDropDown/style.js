@@ -34,6 +34,10 @@ export const ButtonOptions = styled.button`
   justify-content: space-between;
   font-weight: bold;
 
+  :hover{
+    background-color: ${({backColor}) => backColor};
+  }
+
   :first-child {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;

@@ -96,7 +96,7 @@ export const DATE = [
         dica: ['CPU', 'Cérebro', 'Processamento'],
       },
       {
-        palavra: 'Placa-mae',
+        palavra: 'Placa mae',
         descricao:
           'É a responsável por unir tudo.',
         dica: ['Processador', 'Memória', 'Placa de vídeo'],
@@ -228,13 +228,13 @@ export const DATE = [
           dica: ['Controladores lógicos', 'Recurso didático', 'Agrupamento'],
         },
         {
-          palavra: 'Front-end',
+          palavra: 'Front end',
           descricao:
             'É tudo que envolve a parte visível de um site ou aplicação.',
           dica: ['Interface gráfica', 'Design', 'Visual'],
         },
         {
-          palavra: 'Back-End',
+          palavra: 'Back End',
           descricao:
             'Fica responsável pelos bastidores de uma aplicação.',
           dica: ['Banco', 'SQL', 'Mongo'],
